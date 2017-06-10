@@ -56,7 +56,7 @@ var HTMLonlineDates = '<div class="date-text">%data%</div>';
 var HTMLonlineURL = '<br><a href="#">%data%</a>';
 
 var internationalizeButton = '<button>Internationalize</button>';
-var googleMap = '<div id="map"></div>';
+var googleMap = '<div id="#map"></div>';
 
 
 /*
@@ -86,10 +86,9 @@ function logClicks(x,y) {
 }
 
 $(document).click(function(loc) {
-  // your code goes here!
+  var x = loc.pageX;
+  var y = loc.pageY;
 });
-
-
 
 /*
 This is the fun part. Here's where we generate the custom Google Map for the website.
@@ -102,22 +101,20 @@ var map;    // declares a global map variable
 /*
 Start here! initializeMap() is called when page is loaded.
 */
+
 function initializeMap() {
-
-  var locations;
-
-  var mapOptions = {
+var locations;
+var mapOptions = {
     disableDefaultUI: true
-  };
+};
 
   /*
   For the map to be displayed, the googleMap var must be
   appended to #mapDiv in resumeBuilder.js.
   */
-  map = new google.maps.Map(document.querySelector('#map'), mapOptions);
+map = new google.maps.Map(document.querySelector('#mapDiv'), mapOptions);
 
-
-  /*
+ /*
   locationFinder() returns an array of every location string from the JSONs
   written for bio, education, and work.
   */
@@ -141,7 +138,7 @@ function initializeMap() {
     // the locations array. Note that forEach is used for array iteration
     // as described in the Udacity FEND Style Guide:
     // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
-    work.jobs.forEach(function(job){
+	 work.jobs.forEach(function(job){
       locations.push(job.location);
     });
 
@@ -161,7 +158,7 @@ function initializeMap() {
     var name = placeData.formatted_address;   // name of the place from the place service
     var bounds = window.mapBounds;            // current boundaries of the map window
 
-    // marker is an object with additional data about the pin for a single location
+// marker is an object with additional data about the pin for a single location
     var marker = new google.maps.Marker({
       map: map,
       position: placeData.geometry.location,
@@ -188,8 +185,7 @@ function initializeMap() {
     // center the map
     map.setCenter(bounds.getCenter());
   }
-
-  /*
+/*
   callback(results, status) makes sure the search returned results for a location.
   If so, it creates a new map marker for that location.
   */
@@ -226,24 +222,26 @@ function initializeMap() {
   window.mapBounds = new google.maps.LatLngBounds();
 
   // locations is an array of location strings returned from locationFinder()
-  locations = locationFinder();
+	locations = locationFinder();
 
   // pinPoster(locations) creates pins on the map for each location in
   // the locations array
   pinPoster(locations);
 
 }
-
+  
 /*
 Uncomment the code below when you're ready to implement a Google Map!
 */
 
-// Calls the initializeMap() function when the page loads
+//Calls the initializeMap() function when the page loads
 //window.addEventListener('load', initializeMap);
 
-// Vanilla JS way to listen for resizing of the window
-// and adjust map bounds
+//Vanilla JS way to listen for resizing of the window
+//and adjust map bounds
+
 //window.addEventListener('resize', function(e) {
-  //Make sure the map bounds get updated on page resize
-//  map.fitBounds(mapBounds);
+//Make sure the map bounds get updated on page resize
+//map.fitBounds(mapBounds);
 //});
+
