@@ -150,14 +150,14 @@ var education = {
 	"schools": [
 	{
 		"name": "University of Phoenix",
-		"city": "Atlanta, GA",
+		"location": "Atlanta, GA",
 		"degree": "BA",
 		"major": ["Business Management", "Human Resources"],
 		"years": "2008 - 2011"
 	},
 	{
 		"name": "University of Phoenix",
-		"city": "Atlanta, GA",
+		"location": "Atlanta, GA",
 		"degree": "Masters",
 		"major": ["Business Management"],
 		"years": "2014 - 2015"
@@ -184,7 +184,7 @@ function displayEducation () {
 		$("#education").append(HTMLschoolStart);
 		var formattedName = HTMLschoolName.replace("%data%", education.schools[school].name);
 		var formattedDates = HTMLschoolDates.replace("%data%", education.schools[school].years);
-		var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[school].city);
+		var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
 		var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
 		var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
 		$(".education-entry:last").append(formattedName);
