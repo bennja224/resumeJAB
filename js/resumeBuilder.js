@@ -193,7 +193,7 @@ education.display = function () {
 		$(".education-entry:last").append(formattedMajor);
 		var formattedDegree = HTMLschoolDegree.replace("%data%", school.degree);
 		$(".education-entry:last").append(formattedDegree);
-	})
+	});
 	}
 	$("#education").append(HTMLonlineClasses);
 	$("#education").append(HTMLschoolStart);
@@ -207,7 +207,7 @@ education.display = function () {
 		$(".education-entry:last").append(formattedonlineDates);
 		var formattedonlineURL = HTMLonlineURL.replace("%data%", onlineClasses.url);
 		$(".education-entry:last").append(formattedonlineURL);
-	})
+	});
 	}
 };
 
