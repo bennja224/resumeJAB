@@ -10,24 +10,19 @@ var bio = {
 	},
 	"welcomeMessage": "Hi I am learning about Front-end Web Development on my path to 2020.",
 	"skills": ["energetic team builder", "global customer service", "network operations", "service assurance", "process management", "finance", "human resources"],
-	"bioPic": "images/jab.jpg"
+	"biopic": "images/jab.jpg"
 };
 bio.display = function() {	
 	var formattedName = HTMLheaderName.replace("%data%",bio.name);
 	var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
-	var formattedBiopic = HTMLbioPic.replace("%data%",bio.bioPic);
+	var formattedBiopic = HTMLbioPic.replace("%data%",bio.biopic);
 	var formattedWelcome = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
 
-	$("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
-    $("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
-    $("#topContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
-    $("#topContacts").append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
-    $("#topContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
-    $("#footerContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
-    $("#footerContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
-    $("#footerContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
-    $("#footerContacts").append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
-    $("#footerContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
+	$("#topContacts, #footerContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
+    $("#topContacts, #footerContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
+    $("#topContacts, #footerContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
+    $("#topContacts, #footerContacts").append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
+    $("#topContacts, #footerContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
     $("#header").prepend(formattedRole);
 	$("#header").prepend(formattedName);
 	$("#header").append(formattedBiopic);
@@ -103,46 +98,49 @@ work.display();
 
 
 var projects = {
-	"recent": [
+	"projects": [
 	{
 		"title": "JIRA",
 		"dates": "2017",
 		"description": "Create a JIRA project for the BizOps Transformation Enablement team.",
-		"images": "images/JIRA.png"
+		"images": ["images/JIRA.png"]
 	},
 	{
 		"title": "WAM",
 		"dates": "2016",
 		"description": "Migrate Service Assurance teams from AutoQM to Work Assignment Manager (WAM).",
-		"images": "images/WAM.png"
+		"images": ["images/WAM.png"]
 	},
 	{
 		"title": "UA",
 		"dates": "2015",
 		"description": "Open a new Universal Agent center in Atlanta, GA.",
-		"images": "images/Atl.jpg"
+		"images": ["images/Atl.jpg"]
 	}
 	]
 };
 
 projects.display = function () {
 	$("#projects").append(HTMLprojectStart);
-	if (projects.recent.length > 0) {
-		projects.recent.forEach(function(recent) {
-	    var formattedProjectTitle = HTMLprojectTitle.replace("%data%", recent.title);
+	if (projects.projects.length > 0) {
+		projects.projects.forEach(function(projects) {
+	    var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.title);
         $(".project-entry:last").append(formattedProjectTitle);
 
-        var formattedProjectDates = HTMLprojectDates.replace("%data%", recent.dates);
+        var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.dates);
         $(".project-entry:last").append(formattedProjectDates);
 
-        var formattedProjectDescription = HTMLprojectDescription.replace("%data%", recent.description);
+        var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.description);
         $(".project-entry:last").append(formattedProjectDescription);
-
-        var formattedProjectImage = HTMLprojectImage.replace("%data%", recent.images);
+			
+		projects.images.forEach(function(images) {
+        var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.images);
         $(".project-entry:last").append(formattedProjectImage);
-        });
-	}
+		});
+	});
 };
+};
+
 projects.display();
 
 
@@ -152,15 +150,15 @@ var education = {
 		"name": "University of Phoenix",
 		"location": "Atlanta, GA",
 		"degree": "BA",
-		"major": ["Business Management", "Human Resources"],
-		"years": "2008 - 2011"
+		"majors": ["Business Management", "Human Resources"],
+		"dates": "2008 - 2011"
 	},
 	{
 		"name": "University of Phoenix",
 		"location": "Atlanta, GA",
 		"degree": "Masters",
-		"major": ["Business Management"],
-		"years": "2014 - 2015"
+		"majors": ["Business Management"],
+		"dates": "2014 - 2015"
 	}
 	],
 	"onlineClasses": [
@@ -185,11 +183,11 @@ education.display = function () {
 		education.schools.forEach(function(school) {
 		var formattedName = HTMLschoolName.replace("%data%", school.name);
 		$(".education-entry:last").append(formattedName);
-		var formattedDates = HTMLschoolDates.replace("%data%", school.years);
+		var formattedDates = HTMLschoolDates.replace("%data%", school.dates);
 		$(".education-entry:last").append(formattedDates);
 		var formattedLocation = HTMLschoolLocation.replace("%data%", school.location);
 		$(".education-entry:last").append(formattedLocation);
-		var formattedMajor = HTMLschoolMajor.replace("%data%", school.major);
+		var formattedMajor = HTMLschoolMajor.replace("%data%", school.majors);
 		$(".education-entry:last").append(formattedMajor);
 		var formattedDegree = HTMLschoolDegree.replace("%data%", school.degree);
 		$(".education-entry:last").append(formattedDegree);
